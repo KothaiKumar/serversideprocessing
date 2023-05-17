@@ -126,7 +126,9 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('areaofrectangle/',views.rectarea,name="areaofrectangle"),
     path('',views.rectarea,name="areaofrectangleroot")
-]```
+]
+
+```
 
 ## OUTPUT:
 ![1](https://github.com/KothaiKumar/serversideprocessing/assets/121215739/61318c92-7f06-4c79-9613-51c944b97b2f)
