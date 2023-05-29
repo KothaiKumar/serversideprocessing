@@ -31,8 +31,6 @@ Publish the website in the given URL.
 
 ## PROGRAM :
 ```html
-##math.html
-math.html
 <html>
 <head>
 <meta charset='utf-8'>
@@ -42,13 +40,13 @@ math.html
 <style type="text/css">
 body 
 {
-background-color:red;
+background-color:cyan;
 }
 .edge {
-width: 1440px;
+width: 1080px;
 margin-left: auto;
 margin-right: auto;
-padding-top: 250px;
+padding-top: 200px;
 padding-left: 300px;
 }
 .box {
@@ -57,19 +55,19 @@ border: Thick dashed lime;
 width: 500px;
 min-height: 300px;
 font-size: 20px;
-background-color:blue;
+background-color: purple;
 }
 .formelt{
-color:orange;
+color: Red;
 text-align: center;
-margin-top: 7px;
-margin-bottom: 6px;
+margin-top: 5px;
+margin-bottom: 5px;
 }
 h1
 {
-color:rgb(255, 0, 179);
-text-align: center;
-padding-top: 20px;
+    color: yellow;
+    text-align: center;
+    padding-top: 20px;
 }
 </style>
 </head>
@@ -96,9 +94,38 @@ Area : <input type="text" name="area" value="{{area}}"></input>m<sup>2</sup><br/
 </div>
 </body>
 </html>
+```
+## Result.html
+```html
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>SEC demo on server processing result</title>
+    </head>
+    <body>
+        The result is {{result}}
+    </body>
+</html>
+```
+## urls.py
+```python
+from django.contrib import admin
+from django.urls import path
+from myapp import views
 
-##views.py
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('areaofrectangle/',views.rectarea,name="areaofrectangle"),
+    path('',views.rectarea,name="areaofrectangleroot")
+]
+```
+## Views.py
+```python
 from django.shortcuts import render
+from django.template  import loader
+from django.shortcuts import render
+
 def rectarea(request):
     context={}
     context['area'] = "0"
@@ -111,31 +138,20 @@ def rectarea(request):
         print('request=',request)
         print('Length=',l)
         print('Breadth=',b)
-        area= int(l) * int(b)
+        area = int(l) * int(b)
         context['area'] = area
         context['l'] = l
         context['b'] = b
-        print('Area=', area)
-    return render(request,"myapp/math.html",context)
-
-##urls.py
-from django.contrib import admin
-from django.urls import path
-from myapp import views
-urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('areaofrectangle/',views.rectarea,name="areaofrectangle"),
-    path('',views.rectarea,name="areaofrectangleroot")
-]
-
+        print('Area=',area)
+    return render(request,'myapp/math.html',context)
 ```
-
 ## OUTPUT:
-![1](https://github.com/KothaiKumar/serversideprocessing/assets/121215739/61318c92-7f06-4c79-9613-51c944b97b2f)
+## Server Output
+![serverside_serveroutput](https://github.com/KothaiKumar/serversideprocessing/assets/121215739/c1c85688-7a3c-4a8f-a1ee-830257a6c4f2)
 
+## Client Output
+![serverside](https://github.com/KothaiKumar/serversideprocessing/assets/121215739/10bfdc9d-bde9-4eb2-a18c-c0537e29ddb8)
 
-### Home Page:
-![2](https://github.com/KothaiKumar/serversideprocessing/assets/121215739/e298d379-918d-47ab-9966-63d403fea963)
 
 
 ## Result:
